@@ -1,4 +1,4 @@
-import { TokenTypeRow } from "../types/types"
+import { TokenTypeRow } from "../types/Database"
 
 export default class Token {
     protected id?: number;

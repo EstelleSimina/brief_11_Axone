@@ -1,4 +1,4 @@
-export interface UsersTypeRow {
+export interface UsersDbRow {
     id: number;
     email: string;
     username: string;

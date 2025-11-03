@@ -5,7 +5,7 @@ import { Link } from "react-router";
 export default function Homepage() {
   return (
     <div>
-      <h1>📘 Bienvenue sur SnipShare</h1>
+      <h1>Bienvenue sur Axone</h1>
       <p>
         Partagez et découvrez des extraits de code utiles pour vos projets.
       </p>

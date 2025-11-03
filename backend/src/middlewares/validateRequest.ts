@@ -62,7 +62,7 @@ export const validateRequest = (
 const signUpSchema = z
     .object({
         email: z.email("Format d'email invalide"),
-        pseudo: z
+        username: z
             .string({error:"Pseudo requis"})
             .min(3, "Pseudo trop court (3 caractères min"),
         password: z

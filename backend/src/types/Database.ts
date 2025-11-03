@@ -1,11 +1,11 @@
 export interface UsersDbRow {
-    id: number;
+    id_user: number;
     email: string;
     username: string;
     password_hash: string;
     first_name: string | null;
     last_name : string | null;
-    created_at : Date;
+    created_at : string;
 }
 
 export interface TokenTypeRow {

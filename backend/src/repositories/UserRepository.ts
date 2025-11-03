@@ -37,4 +37,61 @@ export class UserRepository extends Repository {
 
     return null;
   };
+
+  /**
+   * Récupère un utilisateur par son username.
+   * @param username - username cherché
+   * @returns l'instance `User` ou `null` si non trouvée / en cas d'erreur
+   */
+  findByUsername = async (username: string): Promise<Users | null> => {
+      const query = {
+        text: "SELECT * FROM public.users WHERE username = $1",
+        values: [username],
+      };
+
+      try {
+          const result = await this.pool.query<UsersDbRow>(query);
+          return result.rowCount ? Users.fromRow(result.rows[0]) : null;
+      } catch (error) {
+          console.error(error);
+          return null;
+      }
+  };
+
+
+
+  /**
+   * Crée un nouvel utilisateur en base.
+   * @param user - Instance `User` contenant les valeurs à insérer
+   * @returns l'ID inséré ou `null` en cas d'erreur
+   */
+  create = async (user: Users): Promise<number | null> => {
+    const query = {
+      name: "create-user",
+      text: `INSERT INTO public.users (email, username, password_hash, first_name, last_name, created_at)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id_user
+      `,
+      values: [
+        user.getEmail(),
+        user.getUsername(),
+        user.getPasswordHash(),
+        user.getFirstName(),
+        user.getLastName(),
+        user.getCreatedAt(),
+      ],
+    };
+
+    try {
+      const result = await this.pool.query<{ id_user: number }>(query);
+
+      return result.rows[0].id_user;
+    } catch (error) {
+      console.log(error);
+    }
+
+    return null;
+  };
+
+
 }

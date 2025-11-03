@@ -1,7 +1,7 @@
 import { UsersDbRow } from "../types/Database"
 
 export default class Users {
-    protected id?: number;
+    protected id_user?: number;
     protected email: string;
     protected username: string;
     protected password_hash: string;
@@ -13,12 +13,12 @@ export default class Users {
     email: string,
     username: string,
     password_hash: string,
-    first_name: string | null,
-    last_name : string | null,
-    created_at : Date,
-    id: number,
+    first_name: string | null = null,
+    last_name : string | null = null,
+    created_at: Date = new Date(),
+    id_user?: number,
    ){
-    this.id=id;
+    this.id_user=id_user;
     this.email= email;
     this.username = username;
     this.password_hash= password_hash;
@@ -34,11 +34,11 @@ export default class Users {
             row.first_name,
             row.last_name,
             new Date(row.created_at), // conversion string → Date
-            row.id, 
+            row.id_user, 
         );
     }
 
-    getId = (): number | undefined => this.id;
+    getId = (): number | undefined => this.id_user;
 
     getEmail = (): string => this.email;
 

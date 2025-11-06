@@ -61,7 +61,6 @@ h1, h2, h3, h4, h5 {
   line-height: 1.2;
 }
 
-/* 6. Styles spécifiques pour les extraits de code */
 code, pre {
     font-family: var(--font-mono);
     font-size: var(--fs-sm);

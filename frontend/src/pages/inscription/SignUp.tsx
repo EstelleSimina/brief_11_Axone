@@ -1,8 +1,42 @@
 // page d'inscription
-export default function SignupForm() {
+import { useNavigate } from "react-router";
+import { useApiFetch } from "../../hooks/useApiFetch";
+import type { Users } from "../../types/Types";
+import { SignUpForm } from "../../ui/forms/SignUpForm";
+
+export default function SignUp() {
+  const navigate = useNavigate();
+  const { fetchApi, isLoading, isError, errorMsg } = useApiFetch<Users>();
+
+  const sendToApi = async (formData: SignUpForm) => {
+    const { passwordVerify, ...userData } = formData; 
+
+    const response = await fetchApi({
+      method: "POST",
+      path: "/auth/signup",
+      body: userData,
+      credentials: "include",
+      delai: 2000
+    });
+
+    if (response) {
+      navigate("/auth/login"); 
+    }
+  };
+
   return (
-    <div>
-      
-    </div>
+    <main className="signup-page">
+      <h1>Inscrivez-vous à Axone</h1>
+      <p>Rejoignez la communauté pour partager vos snippets de code</p>
+
+      {isLoading && <p className="loading">Création du compte en cours...</p>}
+      {isError && (
+        <div className="error-message">
+          <strong>Erreur :</strong> {errorMsg}
+        </div>
+      )}
+
+      {!isLoading && <SignUpForm sendToApi={sendToApi} />}
+    </main>
   );
-}
+};

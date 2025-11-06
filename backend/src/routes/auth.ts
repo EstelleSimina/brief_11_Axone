@@ -5,7 +5,7 @@ import { validateRequest } from "../middlewares/validateRequest";
 export const authRoute = Router ()
 
 // route pour l'inscription 
-authRoute.post('/signup', validateRequest, (req, res) => {
-    new AuthController(req, res).signUp();
-})
+    authRoute.post('/signup', validateRequest, (req, res) => {
+        new AuthController(req, res).signUp();
+    });
 // la route sera donc /auth/signup

@@ -22,13 +22,13 @@ export const validateRequest = (
 
     // Récupère le chemin de la route (ex: "/signup"). 
     // `req.route?.path` peut être undefined si la route n'est pas trouvée, donc on utilise `|| ""` pour éviter les erreurs.
-    const pathKey = req.route?.path || "";
+    const pathKey = req.path;
 
     
     // =============================================
     // SÉLECTION DU SCHÉMA EN FONCTION DE LA ROUTE
     // =============================================
-    if (methodKey === "POST" && pathKey === "/signup") {
+    if (methodKey === "POST" && pathKey === "/auth/signup") {
         schema = signUpSchema;
     }
 

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import Homepage from './pages/homepage/Homepage';
 import SigninForm from './pages/connexion/SignIn'
-import SignupForm from './pages/inscription/SignUp';
+import Signup from './pages/inscription/SignUp';
 import Dashboard from './pages/dashboard/Dashboard';
 import SnippetList from './pages/exploration/ExplorationSnippet';
 import SnippetDetails from './pages/detailSnippet/DetailSnippet';
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/connexion" element={<SigninForm />} />
-        <Route path="/inscription" element={<SignupForm />} />
+        <Route path="/inscription" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/exploration" element={<SnippetList />} />
         <Route path="/exploration/:id" element={<SnippetDetails />} />

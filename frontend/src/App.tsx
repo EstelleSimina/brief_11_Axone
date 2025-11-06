@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
+import { Header } from './ui/components/header/Header';
+
 import Homepage from './pages/homepage/Homepage';
 import SigninForm from './pages/connexion/SignIn'
 import Signup from './pages/inscription/SignUp';
@@ -9,9 +11,11 @@ import Profile from './pages/profile/Profile';
 import ErrorPage from './pages/errorPage/ErrorPage';
 import './App.css'
 
+
 function App() {
   return (
     <BrowserRouter>
+    <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/connexion" element={<SigninForm />} />

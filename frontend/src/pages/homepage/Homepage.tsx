@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export default function Homepage() {
   return (
-    <div>
+     <main className="main-content">
       <h1>Bienvenue sur Axone</h1>
       <p>
         Partagez et découvrez des extraits de code utiles pour vos projets.
@@ -27,6 +27,6 @@ function greet(name) {
           </pre>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

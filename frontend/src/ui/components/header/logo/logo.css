@@ -1,0 +1,13 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm); 
+  margin-right: auto;
+}
+
+.logo-image {
+  margin-right: auto; 
+  height: 250px;
+  width: auto;
+  transition: var(--transition-smooth);
+}

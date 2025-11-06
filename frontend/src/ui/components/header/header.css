@@ -1,0 +1,20 @@
+.main-header {
+  width: 100%;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  justify-content: center;
+}
+
+
+.header-content {
+  width: 100%; 
+  max-width: auto; 
+  padding: 0 var(--spacing-xl);
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}

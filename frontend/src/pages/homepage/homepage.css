@@ -1,0 +1,113 @@
+.homepage-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-xxl);
+  padding: var(--spacing-xl) 0;
+}
+
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section h1 {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--spacing-lg);
+}
+
+
+
+.hero-section img {
+  max-width: 350px;
+  width: 100%;
+  height: auto;
+
+  /* L'effet de halo est maintenant ici, de manière permanente et intense */
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8));
+
+  /* On garde l'animation d'entrée, mais on enlève la pulsation */
+  animation: fadeInScaleUp 0.8s ease-in-out forwards;
+  
+  /* La transition s'appliquera uniquement au zoom du survol */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Au survol, on garde seulement le zoom pour une interaction simple */
+.hero-section img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+
+
+.presentation-section h2 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.presentation-section p {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-md);
+  max-width: 55ch; 
+}
+
+
+.cta-section p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.btn {
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  min-width: 150px;
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary, #fff); 
+}
+
+.btn--primary:hover {
+  opacity: 0.9;
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-text-main);
+  border: 2px solid var(--color-border, #ccc);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+/* --- NOUVELLE ANIMATION à ajouter à la fin de votre fichier --- */
+/* On garde uniquement l'animation d'entrée */
+@keyframes fadeInScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

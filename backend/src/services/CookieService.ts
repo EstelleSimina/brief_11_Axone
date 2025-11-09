@@ -1,4 +1,3 @@
-// CookieService.ts
 import { Response } from "express";
 import { TokenService } from "./TokenService";
 

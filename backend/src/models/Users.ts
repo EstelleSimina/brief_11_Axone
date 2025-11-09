@@ -38,6 +38,18 @@ export default class Users {
         );
     }
 
+    serialize = (): Record<string, string | number | undefined> => {
+        return {
+            email: this.email,
+            username: this.username,
+            created_at: this.created_at.toISOString(),
+        };
+    };
+
+    setId = (id: number): void => {
+        this.id_user = id;
+    };
+
     getId = (): number | undefined => this.id_user;
 
     getEmail = (): string => this.email;

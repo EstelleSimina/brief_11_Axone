@@ -5,6 +5,7 @@ import Users from "../models/Users";
 import Token from "../models/Token"
 import { TokenService } from "../services/TokenService"
 import { TokenRepository } from "../repositories/TokenRepository";
+import { CookieService } from "../services/CookieService";
 
 export class AuthController extends Controller {
     signUp = async () => {
@@ -46,7 +47,7 @@ export class AuthController extends Controller {
             sub: String(userId),
         });   
         const token = Token.create(userId, jwt);
-        
+
            // 2.2 TOKEN : Enregistrer le token
         const tokenRepository = new TokenRepository();
         const tokenId = await tokenRepository.create(token);
@@ -56,9 +57,15 @@ export class AuthController extends Controller {
                 .status(400)
                 .json({ message: "Création du token impossible" });
             }
+        
 
-        this.response.json({
-            test: "controller",
+            // 3 RESPONSE : Attacher le cookie contenant le jwt et répondre
+        CookieService.setRefreshCookie(this.response, jwt);
+
+       
+        return this.response.status(201).json({
+            message: "Inscription réussie",
+            data: user.serialize(),
         });
     };
 }

@@ -2,6 +2,9 @@ import argon2 from "argon2"
 import { Controller } from "../libs/Controller";
 import { UserRepository } from "../repositories/UserRepository";
 import Users from "../models/Users";
+import Token from "../models/Token"
+import { TokenService } from "../services/TokenService"
+import { TokenRepository } from "../repositories/TokenRepository";
 
 export class AuthController extends Controller {
     signUp = async () => {
@@ -38,9 +41,28 @@ export class AuthController extends Controller {
             return this.response.status(400).json({message:"Une erreur est survenue lors de la création du compte. Veuillez réessayer plus tard."})
         }
 
+        // 2.1 TOKEN : Signer le jwt et créer une instance du token
+        const jwt = TokenService.signRefreshToken({
+            sub: String(userId),
+        });   
+        const token = Token.create(userId, jwt);
+        
+           // 2.2 TOKEN : Enregistrer le token
+        const tokenRepository = new TokenRepository();
+        const tokenId = await tokenRepository.create(token);
+
+        if (!tokenId) {
+            return this.response
+                .status(400)
+                .json({ message: "Création du token impossible" });
+            }
 
         this.response.json({
-            test:"controller",
+            test: "controller",
         });
     };
 }
+
+
+
+        

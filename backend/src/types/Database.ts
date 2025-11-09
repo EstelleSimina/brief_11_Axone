@@ -9,9 +9,9 @@ export interface UsersDbRow {
 }
 
 export interface TokenTypeRow {
-    id: number;
+    id_token: number;
     user_id: number;
     token: string;
-    created_at : Date;
-    expires_at : Date;
+    created_at : string;
+    expires_at : string;
 }

@@ -7,7 +7,6 @@
 
 .logo-image {
   margin-right: auto; 
-  height: 250px;
-  width: auto;
+  width: 300px;
   transition: var(--transition-smooth);
 }

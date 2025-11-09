@@ -2,7 +2,9 @@
 import { useNavigate } from "react-router";
 import { useApiFetch } from "../../hooks/useApiFetch";
 import type { Users } from "../../types/Types";
-import { SignUpForm } from "../../ui/forms/SignUpForm";
+import { SignUpForm } from "../../ui/forms/signUpForm/SignUpForm";
+// import logo_title from "../../assets/logo_title.png";
+import "./signUp.css";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -26,7 +28,10 @@ export default function SignUp() {
 
   return (
     <main className="signup-page">
-      <h1>Inscrivez-vous à Axone</h1>
+      <h1>
+        Créez votre compte
+      </h1>
+      {/* <img src={logo_title} alt="logo Axone" className="logo-signup" /> */}
       <p>Rejoignez la communauté pour partager vos snippets de code</p>
 
       {isLoading && <p className="loading">Création du compte en cours...</p>}

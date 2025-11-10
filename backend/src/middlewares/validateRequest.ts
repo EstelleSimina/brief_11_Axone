@@ -28,11 +28,11 @@ export const validateRequest = (
     // =============================================
     // SÉLECTION DU SCHÉMA EN FONCTION DE LA ROUTE
     // =============================================
-    if (methodKey === "POST" && pathKey === "/signup") {
+    if (methodKey === "POST" && pathKey === "/auth/signup") {
         schema = signUpSchema;
     }
     
-    if (methodKey === "POST" && pathKey === "/signin") {
+    if (methodKey === "POST" && pathKey === "/auth/signin") {
         schema = signInSchema;
     }
 

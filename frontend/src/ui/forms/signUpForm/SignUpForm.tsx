@@ -98,7 +98,7 @@ export const SignUpForm = ({ sendToApi }: SignUpFormProps) => {
 
       {error && <p className="form-client-error">{error}</p>}
 
-      <Button type="submit">Inscription</Button>
+      <Button type="submit">S'inscrire</Button>
     </form>
   );
 };

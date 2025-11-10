@@ -22,7 +22,7 @@ export default function SignUp() {
     });
 
     if (response) {
-      navigate("/auth/login"); 
+      navigate("/connexion"); 
     }
   };
 

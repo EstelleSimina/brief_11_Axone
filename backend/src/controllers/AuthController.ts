@@ -106,12 +106,39 @@ export class AuthController extends Controller {
         .json({ message: "Email ou mot de passe invalide" });
     }
 
-    return this.response.json ({
-        workinprogress: "gg",
-    })
+        //  2.1 ROTATION TOKEN : Récupérer le token existant de l’utilisateur en base de données
+    const tokenRepository = new TokenRepository();
+    const existingToken = await tokenRepository.findByUserId(existingUserId); 
+    
+        // 2.2 ROTATION TOKEN : Signer le nouveau jwt et créer une instance du token
+    const jwt = TokenService.signRefreshToken({
+      sub: String(existingUserId),
+    });
+    const freshToken = Token.create(existingUserId, jwt);
 
+        // 2.3 ROTATION TOKEN : Si un token existe, on le remplace, sinon on ajoute un nouveau
+    let replacingTokenId = null;
+
+    if (existingToken) {
+      replacingTokenId = await tokenRepository.replaceForUser(freshToken);
+    } else {
+      replacingTokenId = await tokenRepository.create(freshToken);
+    }
+
+    if (!replacingTokenId) {
+      return this.response
+        .status(400)
+        .json({ message: "Impossible de créer ou remplacer le token" });
+    }
+
+    // 3 RESPONSE : Attacher le cookie contenant le jwt et répondre
+    CookieService.setRefreshCookie(this.response, jwt);
+
+    return this.response.status(200).json({
+      message: "Connexion réussie",
+      data: existingUser.serialize(),
+    });
 };
-
 }
 
 

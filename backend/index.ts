@@ -79,10 +79,6 @@ app.use(Express.json());
 // Routes principales
 app.use(router);
 
-// Route de test
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Backend SnipShare est opérationnel (contrairement à moi)!' });
-});
 
 // Démarrage du serveur, écoute des connexions HTTP sur le port défini
 app.listen(PORT, () => {

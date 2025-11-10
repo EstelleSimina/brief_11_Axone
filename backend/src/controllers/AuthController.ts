@@ -7,7 +7,13 @@ import { TokenService } from "../services/TokenService"
 import { TokenRepository } from "../repositories/TokenRepository";
 import { CookieService } from "../services/CookieService";
 
+
+/**
+ * Contrôleur gérant l'authentification.
+ */
+
 export class AuthController extends Controller {
+        // Inscription d'un nouvel utilisateur
     signUp = async () => {
         // 0.0 REQUEST : Récupérer les données du corps de requête validées par le middleware
         const { email, password, username } = this.request.body;
@@ -68,6 +74,44 @@ export class AuthController extends Controller {
             data: user.serialize(),
         });
     };
+
+
+
+
+
+        // Connexion d’un utilisateur existant
+    signIn = async () => {
+        // 0.0 REQUEST : Récupérer les données du corps de requête validées par le middleware
+    const { email, password } = this.request.body;
+        // 1.1 USER : Vérifier si un utilisateur avec cet email existe en base de données
+    const userRepository = new UserRepository();
+    const existingUser = await userRepository.findByEmail(email);
+    const existingUserId = existingUser?.getId();
+
+    if (!existingUser || !existingUserId) {
+      return this.response
+        .status(401)
+        .json({ message: "Email ou mot de passe invalide" });
+    }
+
+    // 1.2 USER : Vérifier la concordance entre le mot de passe soumis et le hash enregistré
+    const validPassword = await argon2.verify(
+      existingUser.getPasswordHash(),
+      password
+    );
+
+    if (!validPassword) {
+      return this.response
+        .status(401)
+        .json({ message: "Email ou mot de passe invalide" });
+    }
+
+    return this.response.json ({
+        workinprogress: "gg",
+    })
+
+};
+
 }
 
 

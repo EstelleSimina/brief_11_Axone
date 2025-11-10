@@ -28,8 +28,12 @@ export const validateRequest = (
     // =============================================
     // SÉLECTION DU SCHÉMA EN FONCTION DE LA ROUTE
     // =============================================
-    if (methodKey === "POST" && pathKey === "/auth/signup") {
+    if (methodKey === "POST" && pathKey === "/signup") {
         schema = signUpSchema;
+    }
+    
+    if (methodKey === "POST" && pathKey === "/signin") {
+        schema = signInSchema;
     }
 
     // CAS 1: AUCUN SCHÉMA TROUVÉ
@@ -73,4 +77,11 @@ const signUpSchema = z
     .refine((data) => data.password === data.passwordVerify, { //on vérifie que `password` et `passwordVerify` sont identiques.
         message: "Confirmation du mot de passe est erronée",
         path: ['passwordVerify']
+    });
+
+
+const signInSchema = z
+    .object({
+        email: z.email("Format d'email invalide"),
+        password: z.string({error:"Mot de passe requis"})
     });

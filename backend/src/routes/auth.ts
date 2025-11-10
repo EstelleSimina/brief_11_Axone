@@ -9,3 +9,9 @@ export const authRoute = Router ()
         new AuthController(req, res).signUp();
     });
 // la route sera donc /auth/signup
+
+// route pour la connexion 
+    authRoute.post('/signin', validateRequest, (req, res) => {
+        new AuthController(req, res).signIn()    
+});
+// la route sera donc /auth/signin
